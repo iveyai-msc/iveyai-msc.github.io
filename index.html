@@ -6,13 +6,19 @@
 <title>IAI · Ivey AI Club (MSc)</title>
 <meta name="description" content="IAI is the Ivey MSc AI club: hackathons, AI tool workshops and industry speakers for MSc students.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F3F4EF">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IAI · Ivey AI Club (MSc)">
+<meta property="og:description" content="Hackathons, AI tool workshops and industry speakers for Ivey MSc students. We're hiring our founding exec team.">
+<meta property="og:url" content="https://iveyai-msc.github.io/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F3F4EF; --surface:#FFFFFF; --line:#DCE1DA; --text:#10201B; --muted:#4A5650;
-  --accent:#0B4A3A; --accent-hover:#10201B; --lime:#C8F169;
+  --line-strong:#C5CCC4; --accent:#0B4A3A; --accent-hover:#10201B; --lime:#C8F169; --lime-hover:#B5E04F;
+  --on-accent:#FFFFFF; --on-accent-muted:#D6E4DD; --nav-bg:rgba(243,244,239,.9);
   --mono:'JetBrains Mono',ui-monospace,monospace; --display:'Space Grotesk',system-ui,sans-serif; --body:Inter,system-ui,sans-serif;
 }
 *{box-sizing:border-box}
@@ -21,14 +27,17 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);fon
 a{color:var(--accent)} a:hover{color:var(--accent-hover)}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:16px;top:-60px;z-index:20;background:var(--accent);color:var(--on-accent);padding:10px 16px;border-radius:8px;font-weight:600;text-decoration:none}
+.skip:focus{top:12px;color:var(--on-accent)}
 
 /* nav */
-nav{position:sticky;top:0;z-index:10;background:rgba(243,244,239,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{position:sticky;top:0;z-index:10;background:var(--nav-bg);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
 .brand{font-family:var(--mono);font-weight:700;color:var(--text);text-decoration:none;font-size:18px;display:flex;align-items:center;gap:6px}
 .brand .cur{display:inline-block;width:9px;height:18px;background:var(--accent);border-radius:1px}
 nav ul{list-style:none;display:flex;gap:24px;margin:0;padding:0}
-nav ul a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500}
+nav ul{align-items:center}
+nav ul a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;display:inline-flex;align-items:center;min-height:44px}
 nav ul a:hover{color:var(--text)}
 @media (max-width:640px){nav ul{gap:16px} nav ul li.hide-sm{display:none}}
 
@@ -42,14 +51,16 @@ nav ul a:hover{color:var(--text)}
 .hero p.lede{font-size:clamp(20px,2.4vw,26px);line-height:1.45;max-width:720px;margin:36px 0 40px;color:var(--text)}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 .btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid transparent}
-.btn-primary{background:var(--accent);color:#fff} .btn-primary:hover{background:var(--accent-hover);color:#fff}
-.btn-ghost{border-color:#C5CCC4;color:var(--text);background:var(--surface)} .btn-ghost:hover{border-color:var(--text);color:var(--text)}
+.btn-primary{background:var(--accent);color:var(--on-accent)} .btn-primary:hover{background:var(--accent-hover);color:var(--on-accent)}
+.btn-ghost{border-color:var(--line-strong);color:var(--text);background:var(--surface)} .btn-ghost:hover{border-color:var(--text);color:var(--text)}
 
 /* sections */
 section{padding:96px 0;border-bottom:1px solid var(--line)}
+section.last{border-bottom:0}
 .eyebrow{font-family:var(--mono);color:var(--accent);font-weight:500;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 12px}
 h2{font-family:var(--display);font-size:clamp(32px,4.4vw,48px);line-height:1.1;letter-spacing:-.02em;margin:0 0 20px}
 .intro{max-width:720px;color:var(--muted);margin:0 0 48px;font-size:18px}
+.intro.intro-tight{margin-bottom:0}
 .grid{display:grid;gap:20px;grid-template-columns:repeat(3,minmax(0,1fr))}
 .grid-2{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:20px}
 @media (max-width:760px){.grid,.grid-2{grid-template-columns:1fr}}
@@ -60,33 +71,24 @@ h2{font-family:var(--display);font-size:clamp(32px,4.4vw,48px);line-height:1.1;l
 .icon{width:40px;height:40px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center}
 .icon svg{width:22px;height:22px;stroke:var(--lime);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-/* events */
-.event{display:grid;grid-template-columns:180px 1fr;gap:24px;padding:28px 0;border-top:1px solid var(--line)}
-.event:last-child{border-bottom:1px solid var(--line)}
-.event .when{font-family:var(--mono);color:var(--accent);font-weight:500;font-size:15px}
-.event h3{font-family:var(--display);font-size:26px;margin:0 0 8px}
-.event p{margin:0;color:var(--muted)}
-.event .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.pill{font-family:var(--mono);font-size:13px;border:1px solid #C5CCC4;background:var(--surface);border-radius:999px;padding:4px 12px;color:var(--text)}
-@media (max-width:640px){.event{grid-template-columns:1fr;gap:8px}}
 
 /* roles */
-.status{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:14px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 16px;margin-bottom:40px}
-.status .dot{width:8px;height:8px;border-radius:50%;background:#D98A00}
 .role{display:flex;flex-direction:column;gap:10px}
 .role h3{margin:0}
 .role ul{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:15px}
 .role li{margin:4px 0}
 
 /* partner */
-.partner{background:var(--accent);color:#fff;border-radius:24px;padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.partner{background:var(--accent);color:var(--on-accent);border-radius:24px;padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
 .partner h2{margin-bottom:12px}
+.partner-cta{margin-top:28px}
 .partner .eyebrow{color:var(--lime)}
-.partner p{color:#D6E4DD;margin:0}
-.partner .btn-primary{background:var(--bg);color:var(--text)} .partner .btn-primary:hover{background:#fff}
+.partner p{color:var(--on-accent-muted);margin:0}
+.partner .btn-primary{background:var(--bg);color:var(--text)} .partner .btn-primary:hover{background:var(--surface)}
 .partner ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
 .partner li{display:flex;gap:12px;align-items:flex-start;font-weight:500}
 .partner li::before{content:">";font-family:var(--mono);color:var(--lime);font-weight:700}
+.partner :focus-visible{outline-color:var(--lime)}
 @media (max-width:820px){.partner{grid-template-columns:1fr;padding:36px 24px}}
 
 /* signup */
@@ -98,36 +100,13 @@ h2{font-family:var(--display);font-size:clamp(32px,4.4vw,48px);line-height:1.1;l
 .signup .perks{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
 .signup .perks li{display:flex;gap:12px;font-weight:500}
 .signup .perks li::before{content:">";font-family:var(--mono);color:var(--accent);font-weight:700}
-form.card{padding:32px;display:flex;flex-direction:column;gap:20px}
-.field{display:flex;flex-direction:column;gap:8px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-label,.legend{font-weight:600;font-size:15px}
-.hint{font-size:14px;color:var(--muted);font-weight:400}
-input[type=text],input[type=email],select{width:100%;min-height:50px;padding:0 14px;font:inherit;font-size:16px;color:var(--text);background:var(--bg);border:1px solid #C5CCC4;border-radius:10px;appearance:none;-webkit-appearance:none}
-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2310201B' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px}
-input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
-fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{position:relative}
-.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
-.chip span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid #C5CCC4;border-radius:999px;font-size:15px;font-weight:500;background:var(--bg);transition:background .15s,color .15s,border-color .15s}
-.chip input:checked + span{background:var(--accent);border-color:var(--accent);color:#fff}
-.chip input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
-.consent{display:flex;gap:12px;align-items:flex-start;font-size:15px;font-weight:400;line-height:1.5}
-.consent input{width:22px;height:22px;margin:1px 0 0;accent-color:var(--accent);flex-shrink:0}
-form .btn{width:100%;justify-content:center;border:0;cursor:pointer;font:inherit;font-weight:600;font-size:16px}
-form .btn[disabled]{opacity:.6;cursor:progress}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.msg{margin:0;font-size:15px;border-radius:10px;padding:12px 14px;display:none}
-.msg.ok{display:block;background:#E3EFE8;color:var(--accent)}
-.msg.err{display:block;background:#FBEAEA;color:#8A1C1C}
-.nav-cta{background:var(--accent);color:#fff!important;padding:8px 14px;border-radius:8px}
+.nav-cta{background:var(--accent);color:var(--on-accent)!important;padding:0 16px;border-radius:8px;min-height:40px!important}
 .nav-cta:hover{background:var(--accent-hover)}
-.hiring{background:var(--lime);color:var(--text);font-size:15px}
-.hiring{display:block;text-decoration:none;overflow:hidden;white-space:nowrap}
+.hiring{display:block;background:var(--lime);color:var(--text);font-size:15px;text-decoration:none;overflow:hidden;white-space:nowrap}
+.hiring:focus-visible{outline-offset:-3px;border-radius:0}
 .hiring:hover{color:var(--text)}
 .marquee{display:flex;width:max-content;animation:marquee 32s linear infinite}
-.hiring:hover .marquee,.hiring:focus-visible .marquee{animation-play-state:paused}
+.hiring:hover .marquee,.hiring:focus-visible .marquee,.hiring:active .marquee{animation-play-state:paused}
 .marquee-group{display:flex;align-items:center;flex-shrink:0}
 .m-item{display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 22px}
 .m-item b{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
@@ -135,8 +114,7 @@ form .btn[disabled]{opacity:.6;cursor:progress}
 .m-sep{font-family:var(--mono);font-weight:700;color:var(--accent)}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.marquee{animation:none}}
-.btn-hire{background:var(--lime);color:var(--text)} .btn-hire:hover{background:#B5E04F;color:var(--text)}
-.status .dot.open{background:#2E9E5B}
+.btn-hire{background:var(--lime);color:var(--text)} .btn-hire:hover{background:var(--lime-hover);color:var(--text)}
 .apply-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--lime);border-radius:16px;padding:18px 18px 18px 24px;margin-bottom:40px}
 .apply-bar p{margin:0;font-weight:600;font-size:18px;display:flex;align-items:center;gap:10px}
 .apply-bar .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0}
@@ -144,7 +122,6 @@ form .btn[disabled]{opacity:.6;cursor:progress}
 .apply-end span{color:var(--muted);font-size:15px}
 @media (max-width:640px){.apply-bar{padding:18px}.apply-bar .btn,.apply-end .btn{flex:1 1 100%;justify-content:center}}
 @media (max-width:820px){.signup{grid-template-columns:1fr;gap:32px}}
-@media (max-width:480px){form.card{padding:22px}.row{grid-template-columns:1fr}}
 
 /* mobile polish */
 @media (max-width:640px){
@@ -157,10 +134,6 @@ form .btn[disabled]{opacity:.6;cursor:progress}
   section{padding:64px 0}
   .intro{margin-bottom:32px;font-size:16px}
   .card{padding:22px}
-  .event{padding:22px 0}
-  .event h3{font-size:22px}
-  .status{border-radius:14px;align-items:flex-start;font-size:13px}
-  .status .dot{margin-top:6px;flex-shrink:0}
   .partner{border-radius:18px}
   footer .wrap{flex-direction:column;align-items:flex-start;gap:8px}
 }
@@ -168,9 +141,11 @@ form .btn[disabled]{opacity:.6;cursor:progress}
 footer{padding:48px 0 64px;color:var(--muted);font-size:15px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
 footer .brand{font-size:16px}
+footer a{display:inline-flex;align-items:center;min-height:44px}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <a class="hiring" href="https://tally.so/r/ArKEyD" target="_blank" rel="noopener" aria-label="We're hiring: join IAI's founding exec team. Apply now (opens in a new tab)">
   <div class="marquee" aria-hidden="true">
@@ -197,13 +172,13 @@ footer .brand{font-size:16px}
     <p class="lede">AI is changing how analytics work gets done. IAI keeps Ivey MSc students current on the AI tools companies actually use, so we graduate ready to apply them and talk about them with confidence.</p>
     <div class="cta">
       <a class="btn btn-primary" href="#signup">Join the club</a>
-      <a class="btn btn-hire" href="https://tally.so/r/ArKEyD" target="_blank" rel="noopener">We're hiring: apply</a>
+      <a class="btn btn-hire" href="https://tally.so/r/ArKEyD" target="_blank" rel="noopener" aria-label="We're hiring: apply (opens in a new tab)">We're hiring: apply</a>
       <a class="btn btn-ghost" href="https://www.instagram.com/iveyai.msc/" rel="noopener">Follow @iveyai.msc</a>
     </div>
   </div>
 </header>
 
-<main>
+<main id="main">
 <section id="about">
   <div class="wrap">
     <p class="eyebrow">What we do</p>
@@ -234,7 +209,7 @@ footer .brand{font-size:16px}
     <div>
       <p class="eyebrow">Membership · Free</p>
       <h2>Join IAI</h2>
-      <p class="intro" style="margin-bottom:0">Sign up once and you're on the list. We'll email you when hackathon spots, workshops and speaker events open up. No group-chat hunting required.</p>
+      <p class="intro intro-tight">Sign up once and you're on the list. We'll email you when hackathon spots, workshops and speaker events open up. No group-chat hunting required.</p>
       <ul class="perks">
         <li>Hear about every event first</li>
         <li>Hackathon and workshop registration links</li>
@@ -253,7 +228,7 @@ footer .brand{font-size:16px}
     <p class="eyebrow">Join the team</p>
     <h2>Help build IAI from day one</h2>
     <p class="intro">We're putting together our founding exec team. Most of the team focuses on bringing companies, alumni and practitioners into the room.</p>
-    <div class="apply-bar"><p><span class="dot" aria-hidden="true"></span>Applications are open for all five roles.</p><a class="btn btn-primary" href="https://tally.so/r/ArKEyD" target="_blank" rel="noopener">Apply now &rarr;</a></div>
+    <div class="apply-bar"><p><span class="dot" aria-hidden="true"></span>Applications are open for all five roles.</p><a class="btn btn-primary" href="https://tally.so/r/ArKEyD" target="_blank" rel="noopener" aria-label="Apply now (opens in a new tab)">Apply now &rarr;</a></div>
     <div class="grid grid-2">
       <article class="card role">
         <span class="tag">// partnerships</span>
@@ -295,15 +270,15 @@ footer .brand{font-size:16px}
   </div>
 </section>
 
-<section id="partner" style="border-bottom:0">
+<section id="partner" class="last">
   <div class="wrap">
     <div class="partner">
       <div>
         <p class="eyebrow">For companies &amp; alumni</p>
         <h2>Partner with IAI</h2>
         <p>Put your tools, problems and people in front of Ivey MSc students who are learning to apply AI in business.</p>
-        <div class="cta" style="margin-top:28px">
-          <a class="btn btn-primary" href="https://www.instagram.com/iveyai.msc/" rel="noopener">Get in touch</a>
+        <div class="cta partner-cta">
+          <a class="btn btn-primary" href="https://www.instagram.com/iveyai.msc/" rel="noopener">Message us on Instagram</a>
         </div>
       </div>
       <ul>
