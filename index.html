@@ -51,6 +51,10 @@ nav ul a:hover{color:var(--text)}
 .hero p.lede{font-size:clamp(20px,2.4vw,26px);line-height:1.45;max-width:720px;margin:36px 0 40px;color:var(--text)}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 .btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid transparent}
+.btn{transition:background-color .18s ease-out,border-color .18s ease-out,color .18s ease-out,transform .12s ease-out}
+.btn:active{transform:translateY(1px) scale(.985)}
+nav ul a,.nav-cta,footer a,.hiring{transition:color .18s ease-out,background-color .18s ease-out}
+@media (prefers-reduced-motion:reduce){.btn,nav ul a,.nav-cta,footer a,.hiring{transition:none}.btn:active{transform:none}}
 .btn-primary{background:var(--accent);color:var(--on-accent)} .btn-primary:hover{background:var(--accent-hover);color:var(--on-accent)}
 .btn-ghost{border-color:var(--line-strong);color:var(--text);background:var(--surface)} .btn-ghost:hover{border-color:var(--text);color:var(--text)}
 
