@@ -124,10 +124,17 @@ form .btn[disabled]{opacity:.6;cursor:progress}
 .nav-cta{background:var(--accent);color:#fff!important;padding:8px 14px;border-radius:8px}
 .nav-cta:hover{background:var(--accent-hover)}
 .hiring{background:var(--lime);color:var(--text);font-size:15px}
-.hiring .wrap{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;min-height:44px;padding-top:8px;padding-bottom:8px;text-align:center}
-.hiring .tag-h{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
-.hiring a{color:var(--text);font-weight:600;text-underline-offset:3px}
-.hiring a:hover{color:var(--accent)}
+.hiring{display:block;text-decoration:none;overflow:hidden;white-space:nowrap}
+.hiring:hover{color:var(--text)}
+.marquee{display:flex;width:max-content;animation:marquee 32s linear infinite}
+.hiring:hover .marquee,.hiring:focus-visible .marquee{animation-play-state:paused}
+.marquee-group{display:flex;align-items:center;flex-shrink:0}
+.m-item{display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 22px}
+.m-item b{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.m-item u{font-weight:600;text-underline-offset:3px}
+.m-sep{font-family:var(--mono);font-weight:700;color:var(--accent)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee{animation:none}}
 .btn-hire{background:var(--lime);color:var(--text)} .btn-hire:hover{background:#B5E04F;color:var(--text)}
 .status .dot.open{background:#2E9E5B}
 .apply-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--lime);border-radius:16px;padding:18px 18px 18px 24px;margin-bottom:40px}
@@ -165,12 +172,12 @@ footer .brand{font-size:16px}
 </head>
 <body>
 
-<div class="hiring" role="region" aria-label="Hiring announcement">
-  <div class="wrap">
-    <span class="tag-h">&gt; We're hiring</span>
-    <span>Join IAI's founding exec team. <a href="https://tally.so/r/ArKEyD" target="_blank" rel="noopener">Apply now &rarr;</a></span>
+<a class="hiring" href="https://tally.so/r/ArKEyD" target="_blank" rel="noopener" aria-label="We're hiring: join IAI's founding exec team. Apply now (opens in a new tab)">
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-group"><span class="m-item"><b>&gt; We're hiring</b> Join IAI's founding exec team <u>Apply now &rarr;</u></span><span class="m-sep" aria-hidden="true">///</span><span class="m-item"><b>&gt; We're hiring</b> Join IAI's founding exec team <u>Apply now &rarr;</u></span><span class="m-sep" aria-hidden="true">///</span><span class="m-item"><b>&gt; We're hiring</b> Join IAI's founding exec team <u>Apply now &rarr;</u></span><span class="m-sep" aria-hidden="true">///</span><span class="m-item"><b>&gt; We're hiring</b> Join IAI's founding exec team <u>Apply now &rarr;</u></span><span class="m-sep" aria-hidden="true">///</span></div>
+    <div class="marquee-group"><span class="m-item"><b>&gt; We're hiring</b> Join IAI's founding exec team <u>Apply now &rarr;</u></span><span class="m-sep" aria-hidden="true">///</span><span class="m-item"><b>&gt; We're hiring</b> Join IAI's founding exec team <u>Apply now &rarr;</u></span><span class="m-sep" aria-hidden="true">///</span><span class="m-item"><b>&gt; We're hiring</b> Join IAI's founding exec team <u>Apply now &rarr;</u></span><span class="m-sep" aria-hidden="true">///</span><span class="m-item"><b>&gt; We're hiring</b> Join IAI's founding exec team <u>Apply now &rarr;</u></span><span class="m-sep" aria-hidden="true">///</span></div>
   </div>
-</div>
+</a>
 
 <nav aria-label="Main">
   <div class="wrap">
