@@ -130,6 +130,12 @@ form .btn[disabled]{opacity:.6;cursor:progress}
 .hiring a:hover{color:var(--accent)}
 .btn-hire{background:var(--lime);color:var(--text)} .btn-hire:hover{background:#B5E04F;color:var(--text)}
 .status .dot.open{background:#2E9E5B}
+.apply-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--lime);border-radius:16px;padding:18px 18px 18px 24px;margin-bottom:40px}
+.apply-bar p{margin:0;font-weight:600;font-size:18px;display:flex;align-items:center;gap:10px}
+.apply-bar .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.apply-end{margin-top:32px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.apply-end span{color:var(--muted);font-size:15px}
+@media (max-width:640px){.apply-bar{padding:18px}.apply-bar .btn,.apply-end .btn{flex:1 1 100%;justify-content:center}}
 @media (max-width:820px){.signup{grid-template-columns:1fr;gap:32px}}
 @media (max-width:480px){form.card{padding:22px}.row{grid-template-columns:1fr}}
 
@@ -170,8 +176,7 @@ footer .brand{font-size:16px}
   <div class="wrap">
     <a class="brand" href="#top" aria-label="IAI home">IAI<span class="cur" aria-hidden="true"></span></a>
     <ul>
-      <li class="hide-sm"><a href="#about">About</a></li>
-      <li class="hide-sm"><a href="#join">Exec team</a></li>
+      <li><a href="#join">Hiring</a></li>
       <li class="hide-sm"><a href="#partner">Partner</a></li>
       <li><a class="nav-cta" href="#signup">Sign up</a></li>
     </ul>
@@ -241,7 +246,7 @@ footer .brand{font-size:16px}
     <p class="eyebrow">Join the team</p>
     <h2>Help build IAI from day one</h2>
     <p class="intro">We're putting together our founding exec team. Most of the team focuses on bringing companies, alumni and practitioners into the room.</p>
-    <div class="status" role="status"><span class="dot open" aria-hidden="true"></span>Applications are open. <a href="https://tally.so/r/ArKEyD" target="_blank" rel="noopener">Apply here &rarr;</a></div>
+    <div class="apply-bar"><p><span class="dot" aria-hidden="true"></span>Applications are open for all five roles.</p><a class="btn btn-primary" href="https://tally.so/r/ArKEyD" target="_blank" rel="noopener">Apply now &rarr;</a></div>
     <div class="grid grid-2">
       <article class="card role">
         <span class="tag">// partnerships</span>
@@ -275,6 +280,10 @@ footer .brand{font-size:16px}
         <p>Keeps the club funded and on budget.</p>
         <ul><li>Manage the annual budget and MScA funding requests</li><li>Track sponsor funds, receipts and reimbursements</li></ul>
       </article>
+    </div>
+    <div class="apply-end">
+      <a class="btn btn-hire" href="https://tally.so/r/ArKEyD" target="_blank" rel="noopener">Apply for a role &rarr;</a>
+      <span>Takes about 10 minutes. Opens in a new tab.</span>
     </div>
   </div>
 </section>
